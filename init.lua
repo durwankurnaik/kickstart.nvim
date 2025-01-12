@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set <Ctrl-,> as escape while in insert mode
-vim.keymap.set('i', 'oien', '<Esc>', { desc = 'Map oien to be escape remap' })
+vim.keymap.set('i', '<leader>,', '<Esc>', { desc = 'Map oien to be escape remap' })
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -311,6 +311,16 @@ require('lazy').setup({
         '<leader>xx',
         '<cmd>Trouble diagnostics toggle<cr>',
         desc = 'Diagnostics (Trouble)',
+      },
+      {
+        '<leader>xn',
+        '<cmd>Trouble diagnostics next<cr>',
+        desc = 'Diagnostics (Next)',
+      },
+      {
+        '<leader>xp',
+        '<cmd>Trouble diagnostics previous',
+        desc = 'Diagnostics (Previous)',
       },
       {
         '<leader>xX',
@@ -914,16 +924,16 @@ require('lazy').setup({
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     -- 'folke/tokyonight.nvim',
     'ellisonleao/gruvbox.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'gruvbox'
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- init = function()
+    --   -- Load the colorscheme here.
+    --   -- Like many other themes, this one has different styles, and you could load
+    --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    --   vim.cmd.colorscheme 'gruvbox'
 
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
+    --   -- You can configure highlights by doing something like:
+    --   vim.cmd.hi 'Comment gui=none'
+    -- end,
   },
 
   -- Highlight todo, notes, etc in comments

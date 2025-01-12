@@ -40,7 +40,7 @@ return {
           if selection then
             local dir = vim.fn.fnamemodify(selection[1], ':h')
             -- Create new tmux window and change to selected directory
-            os.execute(string.format('tmux new-window "cd ~/%s && nvim"', dir))
+            os.execute(string.format('tmux new-window "cd ~/%s && nvim ."', dir))
           end
         end)
         return true
