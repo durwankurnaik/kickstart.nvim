@@ -1,20 +1,42 @@
-local ui = require 'harpoon.ui'
-local mark = require 'harpoon.mark'
-
 return {
-  vim.keymap.set('n', '<leader>a', mark.add_file, { desc = '[A]dd current file to Harpoon' }),
-  vim.keymap.set('n', '<leader>m', ui.toggle_quick_menu, { desc = 'Show Harpoon [M]enu' }),
+  'ThePrimeagen/harpoon',
+  branch = 'harpoon2',
+  opts = {
+    menu = {
+      width = vim.api.nvim_win_get_width(0) - 4,
+    },
+    settings = {
+      save_on_toggle = true,
+    },
+  },
+  keys = function()
+    local keys = {
+      {
+        '<leader>H',
+        function()
+          require('harpoon'):list():add()
+        end,
+        desc = 'Harpoon File',
+      },
+      {
+        '<leader>h',
+        function()
+          local harpoon = require 'harpoon'
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = 'Harpoon Quick Menu',
+      },
+    }
 
-  vim.keymap.set('n', '<leader>n', function()
-    ui.nav_file(1)
-  end, { desc = 'Add file to [N] letter of the keyboard' }),
-  vim.keymap.set('n', '<leader>e', function()
-    ui.nav_file(2)
-  end, { desc = 'Add file to [E] letter of the keyboard' }),
-  vim.keymap.set('n', '<leader>i', function()
-    ui.nav_file(3)
-  end, { desc = 'Add file to [I] letter of the keyboard' }),
-  vim.keymap.set('n', '<leader>o', function()
-    ui.nav_file(4)
-  end, { desc = 'Add file to [O] letter of the keyboard' }),
+    for i = 1, 5 do
+      table.insert(keys, {
+        '<leader>' .. i,
+        function()
+          require('harpoon'):list():select(i)
+        end,
+        desc = 'Harpoon to File ' .. i,
+      })
+    end
+    return keys
+  end,
 }
